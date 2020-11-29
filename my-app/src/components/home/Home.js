@@ -10,9 +10,11 @@ class Main extends Component {
       <Container className="p-2">
         {(this.props.status == "success")
           ? <div>
-            <h3>City: {this.props.city}</h3>
-            <h3>Address: {this.props.address}</h3>
-            <h3>Postal Code: {this.props.code}</h3>
+            <div className="results">
+              <h3>City: {this.props.city}</h3>
+              <h3>Address: {this.props.address}</h3>
+              <h3>Postal Code: {this.props.code}</h3>
+            </div>
             <Alert variant="success">Postal code found! <FontAwesomeIcon icon={faSmile} /></Alert></div>
           : null
         }

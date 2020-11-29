@@ -1,5 +1,5 @@
 import './header.scss';
-import { Form, Button, Row, Container } from 'react-bootstrap/';
+import { Form, Button, Container } from 'react-bootstrap/';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import React, { Component } from 'react';
@@ -38,7 +38,7 @@ class Header extends Component {
                 onChange={this.props.handleChange}>
                 <option value='' defaultValue>Pick a City...</option>
                 {this.state.cities.flatMap((item, index) =>
-                  (item.countryCode == "LT") ? <option key={index} value={item.code}>{item.name}</option> : null)}
+                  (item.countryCode === "LT") ? <option key={index} value={item.code}>{item.name}</option> : null)}
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="addressForm">
