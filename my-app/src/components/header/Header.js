@@ -11,6 +11,7 @@ class Header extends Component {
       cities: []
     }
   }
+  
   async componentDidMount() {
     let res = await fetch("https://api.meteo.lt/v1/places");
     this.setState({

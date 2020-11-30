@@ -8,7 +8,7 @@ class Main extends Component {
   render() {
     return (
       <Container className="p-2">
-        {(this.props.status == "success")
+        {(this.props.status === "success")
           ? <div>
             <div className="results">
               <h3>City: {this.props.city}</h3>
@@ -18,15 +18,15 @@ class Main extends Component {
             <Alert variant="success">Postal code found! <FontAwesomeIcon icon={faSmile} /></Alert></div>
           : null
         }
-        {(this.props.status == "default")
+        {(this.props.status === "default")
           ? <Alert variant="info">You should try searching for a postal code! <FontAwesomeIcon icon={faInfo} /></Alert>
           : null
         }
-        {(this.props.status == "empty")
+        {(this.props.status === "empty")
           ? <Alert variant="warning">Please fill out all the fields! <FontAwesomeIcon icon={faExclamation} /></Alert>
           : null
         }
-        {(this.props.status == "error")
+        {(this.props.status === "error")
           ? <Alert variant="danger">Something went wrong... <FontAwesomeIcon icon={faHeartBroken} /></Alert>
           : null
         }

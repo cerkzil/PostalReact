@@ -21,36 +21,38 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
   async handleSubmit(event) {
     let res = await fetch("https://api.postit.lt/?term=" + this.state.address + "+" + this.state.city + "&key=postit.lt-examplekey");
-    let data = await res.json();
-    if (this.state.city == '' || this.state.address == '') {
-      this.setState({
-        status: "empty"
-      })
-    }
-    else if (data.success == true && data.data !== undefined && data.data.length != 0) {
-        console.log(data.data[0].post_code);
-        this.setState({
-          code: data.data[0].post_code,
-          city: data.data[0].city,
-          address: data.data[0].address,
-          status: "success"
-        });
-    } 
-    else {
-      this.setState({
-        status: "error"
-      })
-    }
+    let jsonRes = await res.json();
+    this.setState({
+      status: this.handleValidation(jsonRes)
+    })
     event.preventDefault();
   }
 
+  handleValidation(jsonRes) {
+    if (this.state.city === '' || this.state.address === '') {
+      this.setState({
+      })
+      return "empty";
+    }
+    else if (jsonRes.success === true && jsonRes.data !== undefined && jsonRes.data.length !== 0) {
+      console.log(jsonRes.data[0].post_code);
+      this.setState({
+        code: jsonRes.data[0].post_code,
+        city: jsonRes.data[0].city,
+        address: jsonRes.data[0].address,
+      });
+      return "success";
+    }
+    else {
+      return "error";
+    }
+  }
 
   render() {
     return (
